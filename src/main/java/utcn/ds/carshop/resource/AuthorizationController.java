@@ -23,8 +23,10 @@ public class AuthorizationController {
     }
 
     @PostMapping("/login")
-    public User findByUsername(@RequestParam(name = "username") String username) {
-        return userService.findByUsername(username);
+    public String findByUsername(@RequestParam(name = "username") String username,
+                               @RequestParam(name = "password") String password) {
+        userService.login(username, password);
+        return "Login cu succes";
     }
 
     @PostMapping("/register")

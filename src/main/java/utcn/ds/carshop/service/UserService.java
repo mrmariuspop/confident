@@ -53,4 +53,15 @@ public class UserService {
         userRepository.delete(userToBeDeleted);
         return userToBeDeleted;
     }
+
+    public void login(String username, String password) {
+        User byUsername = userRepository.findByUsername(username);
+        if (byUsername == null ) {
+            throw new RuntimeException("This username does not exist");
+        }
+
+        if (!byUsername.getPassword().equals(password)) {
+            throw new RuntimeException("Invalid credentials");
+        }
+    }
 }
