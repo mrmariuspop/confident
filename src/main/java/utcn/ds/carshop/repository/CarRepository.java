@@ -5,9 +5,15 @@ import org.springframework.stereotype.Repository;
 import utcn.ds.carshop.model.Car;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
-@Repository
-@Transactional
 public interface CarRepository extends JpaRepository<Car, Long> {
 
+    Car findById(long id);
+
+    List<Car> findByTypeContainingIgnoreCase(String titleContaining);
+
+    List<Car> findByYear(long year);
+
+    List<Car> findByStatus(String status);
 }
